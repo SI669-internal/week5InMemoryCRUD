@@ -20,10 +20,10 @@ function ListMaker1000Delete () {
   const createTodo = (todoText) => {
     let newTodo = {
       text: todoText,
-      key: Date.now()
+      key: Date.now() // or Math.random(), or '' + Math.random(), or uuid.v4()
     }
-    todos.push(newTodo);
-    setTodos(todos);
+    let newTodos = todos.concat(newTodo);
+    setTodos(newTodos);
   }
 
   const updateTodo = (todo, newText) => { 
@@ -54,6 +54,7 @@ function ListMaker1000Delete () {
         </TouchableOpacity>
         <TouchableOpacity 
           style={styles.li3}
+          onPress={??}
         >
           <Icon 
             name="trash"
