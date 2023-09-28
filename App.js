@@ -22,8 +22,7 @@ function ListMaker1000Delete () {
       text: todoText,
       key: Date.now()
     }
-    todos.push(newTodo);
-    setTodos(todos);
+    setTodos(todos.concat(newTodo));
   }
 
   const updateTodo = (todo, newText) => { 
