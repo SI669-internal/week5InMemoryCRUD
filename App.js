@@ -19,7 +19,7 @@ function ListMaker1000 () {
 
   // DATA MODEL FUNCTIONS (CRUD)
   const createTodo = (todoText) => {
-    //TBD
+    setTodos([...todos, {text: todoText, key: new Date().getTime()}])
   }
 
   const updateTodo = (todo, newText) => { 
@@ -100,6 +100,10 @@ function ListMaker1000 () {
           />
           <Button
             title="Add Todo"
+            onPress={() => {
+              createTodo(inputText);
+              setOverlayVisible(false);
+            }}
           />
         </View>
       </Overlay>
