@@ -26,8 +26,8 @@ function ListMaker1000 () {
     //TBD
   }
 
-  const deleteTodo = (todo) => {    
-    //TBD
+  const deleteTodo = (todo) => {
+    setTodos(todos.filter(t => t.key !== todo.key));
   }
   // END DATA MODEL
 
@@ -45,6 +45,7 @@ function ListMaker1000 () {
         </TouchableOpacity>
         <TouchableOpacity 
           style={styles.li3}
+          onPress={() => deleteTodo(item)}
         >
           <MaterialIcons name="delete" size={24} color="black" />
         </TouchableOpacity>
