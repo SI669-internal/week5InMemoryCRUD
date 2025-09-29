@@ -16,6 +16,7 @@ function ListMaker1000 () {
   const [todos, setTodos] = useState(initTodos);
   const [overlayVisible, setOverlayVisible] = useState(false);
   const [inputText, setInputText] = useState('');
+  const [selectedItem, setSelectedItem] = useState(undefined);
 
   // DATA MODEL FUNCTIONS (CRUD)
   const createTodo = (todoText) => {
@@ -23,7 +24,10 @@ function ListMaker1000 () {
   }
 
   const updateTodo = (todo, newText) => { 
-    //TBD
+    let newTodo = {...todo}; // or Object.assign({}, todo);
+    newTodo.text = newText;
+    let newTodos = todos.map(item=>item.key===todo.key ? newTodo : item );
+    setTodos(newTodos);
   }
 
   const deleteTodo = (todo) => {
@@ -39,7 +43,12 @@ function ListMaker1000 () {
           <Text style={styles.listItemText}>{item.text}</Text>
         </View>
         <TouchableOpacity 
-          style={styles.li2}  
+          style={styles.li2}
+          onPress={()=>{
+            setSelectedItem(item);
+            setInputText(item.text);
+            setOverlayVisible(true);
+          }}  
         >
           <MaterialIcons name="edit" size={24} color="black" />
         </TouchableOpacity>
@@ -96,13 +105,21 @@ function ListMaker1000 () {
           <Button
             title="Cancel"
             onPress={()=>{
+              setSelectedItem(undefined);
+              setInputText('');
               setOverlayVisible(false)
             }}  
           />
           <Button
-            title="Add Todo"
-            onPress={() => {
-              createTodo(inputText);
+            title={selectedItem ? "Update Todo" : "Add Todo"}
+            onPress={()=>{
+              if (selectedItem) {
+                updateTodo(selectedItem, inputText);
+              } else {
+                createTodo(inputText);
+              }
+              setSelectedItem(undefined);
+              setInputText('');
               setOverlayVisible(false);
             }}
           />
