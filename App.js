@@ -3,8 +3,7 @@ import { Button, Overlay, Icon, Input } from '@rneui/base';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
-
-function ListMaker1000Start () {
+function ListMaker1000 () {
 
   // INITIAL VALUES FOR TESTING
   const initTodos = [
@@ -168,7 +167,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ListMaker1000Start;
-// export default ListMaker1000Create;
-// export default ListMaker1000Delete;
-// export default ListMaker1000Final;
+export default ListMaker1000;
